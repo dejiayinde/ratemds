@@ -112,3 +112,11 @@ class ratemds:
     
     def output(self):
         return self.__uniqdoc()
+        
+        
+        
+        
+        
+if __name__ = __main__:
+    Result= ratemds() 
+    Result.output()
