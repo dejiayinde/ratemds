@@ -6,6 +6,4 @@ specifically to extract information (Name, Gender, Rating, Ranking and Reviews) 
 The physcicians information are saved as a .csv file
 
 To get the scrapping output, use the method call below:
-            
-Result= ratemds()
-Result.output()    
+              
