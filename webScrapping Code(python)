@@ -6,28 +6,27 @@ class ratemds:
    
     
     def __init__(self):
-        
+
+
+        self.url =  ['https://www.ratemds.com/best-doctors/ct/stamford/dentist/']
+
         generator = (self.url[0] + '?page=' + str(num) for num in range(2,14))
         for i in generator: self.url.append(i) 
             
         
-    def __uniqdoc(self):
-        import pandas as pd 
-        
+    def _uniqdoc(self):
+       
         docname = []
         gender = []
         starrating = []
         ranking = []
         address = []
         reviews = []
-        
-         
+          
         for page in self.url:     #each page url  
-            import requests
-            from bs4 import BeautifulSoup
-            
-            requesturl = requests.get(page)   #retrieving the target website
-            urlsoup = BeautifulSoup(requesturl.text, 'html.parser') #using html parser to structure the retrieved html script
+                        
+            requesturl = self.requests.get(page)   #retrieving the target website
+            urlsoup = self.BeautifulSoup(requesturl.text, 'html.parser') #using html parser to structure the retrieved html script
             search = urlsoup.find_all('a', class_="search-item-doctor-link") #retrieves all doctors profile link from the page
         #return self.search
             for i in range(len(search)-1):
@@ -56,7 +55,7 @@ class ratemds:
                 preview = self.physicianReview(psoup)
                 reviews.append(preview)
             
-        self.doc = pd.DataFrame(columns=['physicianName','physicianGender','starRating','specialtyRanking', 'physicianAddress', 'physicianReview'])
+        self.doc = self.pd.DataFrame(columns=['physicianName','physicianGender','starRating','specialtyRanking', 'physicianAddress', 'physicianReview'])
         self.doc['physicianName'] = docname
         self.doc['physicianGender'] = gender
         self.doc['starRating'] = starrating
@@ -64,18 +63,15 @@ class ratemds:
         self.doc['physicianAddress'] = address
         self.doc['physicianReview'] = reviews
         
-        return self.doc.to_csv('webscrapping2.csv',)#, webscrapping2.save()
+        return self.doc.to_csv('Doctors_Information.csv',)#,The information is for physicans in stamford
          
-        #return docname, gender, starrating, ranking, address, reviews
+        #returns docname, gender, starrating, ranking, address, reviews
 
         
     def docProfileLink(self,targetlink):
-        import requests
-        from bs4 import BeautifulSoup
-
-        
-        uniqdocurl = requests.get(targetlink)
-        uniqdocurlsoup = BeautifulSoup(uniqdocurl.text, 'html.parser')  #using html parser to structure the retrieved  html script for unique physician
+       
+        uniqdocurl = self.requests.get(targetlink)
+        uniqdocurlsoup = self.BeautifulSoup(uniqdocurl.text, 'html.parser')  #using html parser to structure the retrieved  html script for unique physician
         return uniqdocurlsoup        
            
     def physicianName(self, uniqdocurlsoup):
@@ -111,12 +107,12 @@ class ratemds:
         return reviews
     
     def output(self):
-        return self.__uniqdoc()
+        return self._uniqdoc()
         
         
         
         
         
-if __name__ == __main__:
+if __name__ == "__main__":
     Result= ratemds() 
     Result.output()
