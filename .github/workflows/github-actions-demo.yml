@@ -31,6 +31,11 @@ jobs:
           git switch master
           git switch $feature_branch
           git diff --name-only master..$feature_branch | grep hub
+          for file in $(git diff --name-only master..$feature_branch | grep 'hub'); do
+          echo "Processing $file"
+  # Add your commands here
+done
+
           echo "event_name: ${{ github.event_name }}"
           
           
