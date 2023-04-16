@@ -26,9 +26,9 @@ jobs:
           ls -la
           ls -la ~/
           git branch -a
-          echo "current_branch: ${GITHUB_REF}"
+          echo "current_branch: ${GITHUB_REF#refs/heads/}"
           git switch master
-          echo "switched_branch: ${GITHUB_REF}"
+          echo "switched_branch: ${GITHUB_REF#refs/heads/}"
           git diff --only-name master
           git diff --name-status master
           echo "event_name: ${{ github.event_name }}"
