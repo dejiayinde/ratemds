@@ -27,4 +27,6 @@ jobs:
           ls -la
           ls -la ~/
           git branch -a
+          git diff master --only-name
+          git diff master --name-status
           echo "event_name: ${{ github.event_name }}"
