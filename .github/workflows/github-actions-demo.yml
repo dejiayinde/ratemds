@@ -31,7 +31,6 @@ jobs:
           git switch master
           git switch $feature_branch
           git diff --only-name master
-          git diff --name-status master
           echo "event_name: ${{ github.event_name }}"
           
           
