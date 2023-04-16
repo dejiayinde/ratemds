@@ -21,12 +21,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 
-        
       - name: Setup flyte config.yaml
         run: |
           ls -la
           ls -la ~/
           git branch -a
+          echo "current_branch: ${GITHUB_REF}"
+          git switch master
+          echo "switched_branch: ${GITHUB_REF}"
           git diff --only-name master
           git diff --name-status master
           echo "event_name: ${{ github.event_name }}"
