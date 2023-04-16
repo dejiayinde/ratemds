@@ -30,7 +30,7 @@ jobs:
           echo $feature_branch
           git switch master
           git switch $feature_branch
-          git diff --only-name master..$feature_branch
+          git diff master..$feature_branch
           echo "event_name: ${{ github.event_name }}"
           
           
