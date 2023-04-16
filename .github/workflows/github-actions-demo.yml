@@ -33,9 +33,7 @@ jobs:
           git diff --name-only master..$feature_branch | grep hub
           for file in $(git diff --name-only master..$feature_branch | grep 'hub'); do
           echo "Processing $file"
-  # Add your commands here
-done
-
+          done
           echo "event_name: ${{ github.event_name }}"
           
           
