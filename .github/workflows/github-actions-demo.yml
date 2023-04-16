@@ -26,9 +26,8 @@ jobs:
           ls -la
           ls -la ~/
           git branch -a
-          echo "feature_branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          SET feature_branch=${GITHUB_REF#refs/heads/}
           echo $feature_branch
-          echo $FEATURE_BRANCH
           git switch master
           git switch $feature_branch
           git diff --only-name master
